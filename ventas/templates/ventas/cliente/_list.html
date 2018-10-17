@@ -1,0 +1,82 @@
+{% extends 'ventas/base.html' %}
+
+{% block title %}Clientes - Lista{% endblock %}
+{% block content %}
+<div class="wrapper wrapper-content  animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      {% comment %}
+      {% include 'finance/messages.html' %}
+      {% endcomment %}
+      <div class="ibox">
+        <div class="ibox-title">
+          <h5>Lista de cliente</h5>
+          <div class="ibox-tools">
+            <a href="{% url 'ventas:cliente-create' %}"
+               class="btn btn-primary btn-xs">Registrar un cliente</a>
+          </div>
+        </div>
+        <div class="ibox-content">
+          <div class="m-b-lg">
+            <div class="m-t-md">
+              <strong>Encontrado{{ paginator.count|pluralize }}
+                {{ paginator.count }}
+                cliente{{ paginator.count|pluralize }}</strong>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-hover issue-tracker">
+              <thead>
+              <tr>
+                <th>Denominación del Cliente</th>
+                <th>Descripción del Cliente</th>
+                <th>Fecha de Registro</th>
+                <th>Cliente Activo</th>
+                <th class="text-right">Acciones</th>
+              </tr>
+              </thead>
+              <tbody>
+              {% for object in object_list %}
+              <tr>
+                <td>
+                  <a href="{% url 'ventas:cliente-detail' object.pk %}">
+                    {{ object }}
+                  </a>
+                </td>
+                <td>
+                  <p class="small">
+                    {{ object.desccliente }}
+                  </p>
+                </td>
+                <td>
+                  {{ object.fecharegistro }}
+                </td>
+                <td>
+                  {{ object.clienteactivo }}
+                </td>
+                <td class="text-right">
+                  <a href="{% url 'ventas:cliente-update' object.pk %}"
+                     class="btn btn-white btn-sm"><i
+                      class="fa fa-pencil"></i> Editar </a>
+                  <a href="{% url 'ventas:cliente-delete' object.pk %}"
+                     class="btn btn-white btn-sm" data-toggle="modal"
+                     data-target="#modal"><i class="fa fa-trash"></i>
+                    Eliminar </a>
+                </td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td><p>Sin clientes encontrados.</p></td>
+              </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+            {% include 'ventas/paginate.html' %}
+          </div>
+        </div>
+      </div>
+      {% include 'ventas/modal.html' %}
+    </div>
+  </div>
+</div>
+{% endblock %}
