@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{% endblock %}</title>
+  {% block css %}
+  <link href="{% static 'ventas/css/bootstrap.min.css' %}" type="text/css"
+        media="all" rel="stylesheet">
+  <link href="{% static 'ventas/font-awesome/css/font-awesome.min.css' %}"
+        type="text/css" media="all" rel="stylesheet">
+  <link href="{% static 'ventas/css/animate.css' %}" type="text/css"
+        media="all" rel="stylesheet">
+  <link href="{% static 'ventas/css/style.css' %}" type="text/css"
+        media="all" rel="stylesheet">
+  {% endblock %}
+</head>
+
+<body class="top-navigation">
+<div id="wrapper">
+  <div id="page-wrapper" class="gray-bg">
+    {%comment%}
+    {% if not view.is_popup %}
+    {%endcomment%}
+    <div class="row border-bottom white-bg">
+      <nav class="navbar navbar-static-top" role="navigation">
+        <div class="navbar-header">
+          <button aria-controls="navbar" aria-expanded="false"
+                  data-target="#navbar" data-toggle="collapse"
+                  class="navbar-toggle collapsed" type="button">
+            <i class="fa fa-reorder"></i>
+          </button>
+          <a href="#"
+             class="navbar-brand"
+             title="App Test Workana Python Django">ATWPD</a>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a aria-expanded="false" role="button" href="#"
+                 class="dropdown-toggle" data-toggle="dropdown"> Artículo
+                <span class="caret"></span></a>
+              <ul role="menu" class="dropdown-menu">
+                <li><a
+                    href="{% url 'ventas:articulo-list' %}">Listar</a>
+                </li>
+                <li><a
+                    href="{% url 'ventas:articulo-create' %}">Crear</a>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a aria-expanded="false" role="button" href="#"
+                 class="dropdown-toggle" data-toggle="dropdown"> Cliente
+                <span class="caret"></span></a>
+              <ul role="menu" class="dropdown-menu">
+                <li><a
+                    href="">Listar</a>
+                </li>
+                <li><a href="">Crear</a>
+                </li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a aria-expanded="false" role="button" href="#"
+                 class="dropdown-toggle" data-toggle="dropdown"> Detalles de Venta
+                <span class="caret"></span></a>
+              <ul role="menu" class="dropdown-menu">
+                <li><a href="">Listar</a>
+                </li>
+                <li><a href="">Crear</a></li>
+                <!--<li><a href="">Pagos</a></li>-->
+                <!--<li><a href="">Liquidaciones</a>-->
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-top-links navbar-right">
+            <li>
+              <a href="">
+                <i class="fa fa-sign-out"></i> Cerrar sesion
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    {%comment%}
+    {% endif %}
+    {%endcomment%}
+    {% block content %}{% endblock %}
+  </div>
+</div>
+
+{% block js %}
+<script type="text/javascript"
+        src="{% static 'ventas/js/jquery-3.1.1.min.js' %}"></script>
+<script type="text/javascript"
+        src="{% static 'ventas/js/bootstrap.min.js' %}"></script>
+<script type="text/javascript"
+        src="{% static 'ventas/js/inspinia.js' %}"></script>
+{% endblock %}
+</body>
+</html>
