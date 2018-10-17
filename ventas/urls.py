@@ -30,6 +30,8 @@ articulo_patterns = [
          name='articulo-update'),
     path('<int:pk>/delete/', views.ArticuloDeleteView.as_view(),
          name='articulo-delete'),
+    path('<int:pk>/precio', views.ArticuloAjaxView.as_view(),
+         name='articulo-precio'),
 ]
 
 # urls de Cliente
@@ -46,20 +48,21 @@ cliente_patterns = [
 ]
 
 # urls de Detalles de Ventas
-detventa_patterns = [
-    path('', views.DetVentaListView.as_view(), name='detventa-list'),
-    path('create/', views.DetVentaCreateView.as_view(),
-         name='detventa-create'),
-    path('<int:pk>/detail/', views.DetVentaDetailView.as_view(),
-         name='detventa-detail'),
-    path('<int:pk>/update/', views.DetVentaUpdateView.as_view(),
-         name='detventa-update'),
-    path('<int:pk>/delete/', views.DetVentaDeleteView.as_view(),
-         name='detventa-delete'),
+venta_patterns = [
+    path('', views.VentaListView.as_view(), name='venta-list'),
+    path('create/', views.VentaCreateView.as_view(),
+         name='venta-create'),
+    path('<int:pk>/detail/', views.VentaDetailView.as_view(),
+         name='venta-detail'),
+    path('<int:pk>/update/', views.VentaUpdateView.as_view(),
+         name='venta-update'),
+    path('<int:pk>/delete/', views.VentaDeleteView.as_view(),
+         name='venta-delete'),
+
 ]
 
 urlpatterns = [
     path('articulos/', include(articulo_patterns)),
     path('clientes/', include(cliente_patterns)),
-    path('detventas/', include(detventa_patterns)),
+    path('ventas/', include(venta_patterns)),
 ]

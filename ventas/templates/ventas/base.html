@@ -21,9 +21,6 @@
 <body class="top-navigation">
 <div id="wrapper">
   <div id="page-wrapper" class="gray-bg">
-    {%comment%}
-    {% if not view.is_popup %}
-    {%endcomment%}
     <div class="row border-bottom white-bg">
       <nav class="navbar navbar-static-top" role="navigation">
         <div class="navbar-header">
@@ -65,14 +62,12 @@
             </li>
             <li class="dropdown">
               <a aria-expanded="false" role="button" href="#"
-                 class="dropdown-toggle" data-toggle="dropdown"> Detalles de Venta
+                 class="dropdown-toggle" data-toggle="dropdown"> Ventas
                 <span class="caret"></span></a>
               <ul role="menu" class="dropdown-menu">
-                <li><a href="">Listar</a>
+                <li><a href="{% url 'ventas:venta-list' %}">Listar</a>
                 </li>
-                <li><a href="">Crear</a></li>
-                <!--<li><a href="">Pagos</a></li>-->
-                <!--<li><a href="">Liquidaciones</a>-->
+                <li><a href="{% url 'ventas:venta-create' %}">Crear</a></li>
                 </li>
               </ul>
             </li>
@@ -87,9 +82,6 @@
         </div>
       </nav>
     </div>
-    {%comment%}
-    {% endif %}
-    {%endcomment%}
     {% block content %}{% endblock %}
   </div>
 </div>

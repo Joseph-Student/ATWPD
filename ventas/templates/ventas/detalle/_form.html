@@ -1,0 +1,21 @@
+<div id="id_div_detalle-{{num}}" class="form-inline">
+  {% for field in form %}
+    {% if not field.is_hidden %}
+      <div class="form-group">
+        <label class="col-lg-2 sr-only">{{ field.label }}:</label>
+        <div class="col-lg-10">
+          {% if field.name == 'DELETE' and form.empty_permitted %}
+            <a href="#" onclick="deleteDetail(event, this)">Eliminar</a>
+          {% else %}
+            {{ field }}
+            {{ field.help_text }}
+            {{ field.errors|safe }}
+          {% endif %}
+        </div>
+      </div>
+    {% else %}
+      {{ field }}
+    {% endif %}
+  {% endfor %}
+  <div class="hr-line-dashed"></div>
+</div>

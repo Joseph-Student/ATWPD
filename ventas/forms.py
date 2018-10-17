@@ -1,7 +1,9 @@
 from django import forms
+
 from ventas.models.articulos import Articulos
 from ventas.models.clientes import Clientes
 from ventas.models.detventas import DetVentas
+from ventas.models.ventasdiarias import VentasDiarias
 
 
 class ArticuloForm(forms.ModelForm):
@@ -74,7 +76,83 @@ class ClienteForm(forms.ModelForm):
         }
 
 
-class DetVentasForm(forms.ModelForm):
+class VentaForm(forms.ModelForm):
+    class Meta:
+        model = VentasDiarias
+        exclude = ['anulada', 'guardada']
+        widgets = {
+            'numerofactura': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Número de Factura'
+                }
+            ),
+            'fecha': forms.DateInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'DD/MM/YYYY'
+                }
+            ),
+            'hora': forms.TimeInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'HH:MM:SS'
+                }
+            ),
+            'idcliente': forms.Select(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Cliente'
+                }
+            ),
+            'totalarticulos': forms.NumberInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Total Artículos'
+                }
+            ),
+            'totalfactura': forms.NumberInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Total Factura'
+                }
+            )
+        }
+
+
+class DetVentaInlineForm(forms.ModelForm):
     class Meta:
         model = DetVentas
         fields = '__all__'
+        widgets = {
+            'cantidad': forms.NumberInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Cantidad'
+                }
+            ),
+            'idarticulo': forms.Select(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Articulo',
+                    'onchange': 'precioData(this)'
+                }
+            ),
+            'precio': forms.NumberInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Precio',
+                }
+            ),
+            'monto': forms.NumberInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Monto'
+                }
+            )
+        }
+
+    class Media:
+        js = (
+            'ventas/js/venta.js',
+        )

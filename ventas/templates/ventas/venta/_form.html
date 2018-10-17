@@ -1,0 +1,98 @@
+{% extends 'ventas/base.html' %}
+
+{% block title %}Ventas - Registrar un Venta{% endblock %}
+
+{% block css %}
+  {{ block.super }}
+  {{ form.media.css }}
+{% endblock %}
+
+{% block content %}
+  <div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+      <form role="form" method="post" class="form-horizontal">
+        {% csrf_token %}
+        {{ detalle_inlineformset.management_form }}
+        <div class="col-sm-9">
+          <div class="tabs-container">
+            <ul class="nav nav-tabs">
+              <li class="active">
+                <a class="{% if form.errors or form.non_form_errors %}danger{% endif %}"
+                   data-toggle="tab" href="#venta" aria-expanded="true">
+                  Venta</a>
+              </li>
+              <li class="">
+                <a class="{% if detalle_inlineformset.total_error_count %}danger{% endif %}"
+                   data-toggle="tab" href="#detalles" aria-expanded="false">
+                  Detalles</a>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div id="venta" class="tab-pane active">
+                <div class="panel-body">
+                  <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                      <p>Ingrese los datos solicitados:</p>
+                      {% for field in form %}
+                        {% if not field.is_hidden %}
+                          <div class="form-group">
+                            <label
+                                class="col-lg-2 control-label">
+                              {{ field.label }}:
+                            </label>
+                            <div class="col-lg-10">
+                              {{ field }}
+                              {{ field.errors|safe }}
+                            </div>
+                          </div>
+                        {% else %}
+                          {{ field }}
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="detalles" class="tab-pane">
+                <div class="panel-body">
+                  <div class="ibox float-e-margins">
+                    <div id="id_inline_detalle" class="ibox-content">
+                      <p>Registre los Detalles:</p>
+                      <p>
+                        <a href="#" onclick="addDetail(event)">Agregar otro
+                          Detalle</a>
+                      </p>
+                      {{ detalle_inlineformset.non_form_errors|safe }}
+                      {% for form in detalle_inlineformset %}
+                        {% include 'ventas/detalle/_form.html' with num=forloop.counter0%}
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="ibox" style="margin-top: 50px;">
+            <div class="ibox-content">
+              <button class="btn btn-primary btn-block" type="submit">
+                <strong>{{ submit }}</strong></button>
+              <a href="{% url 'ventas:venta-list' %}"
+                 class="btn btn-white btn-block"><strong>Cancelar</strong></a>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}
+
+{% block js %}
+  {{ block.super }}
+  {{ form.media.js }}
+  {{ detalle_inlineformset.media.js }}
+  <script type="template/detalle">
+    {% include 'ventas/detalle/_form.html' with form=detalle_inlineformset.empty_form num='__prefix__'%}
+  </script>
+{% endblock %}

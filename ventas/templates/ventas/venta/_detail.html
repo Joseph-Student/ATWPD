@@ -1,6 +1,6 @@
 {% extends 'ventas/base.html' %}
 
-{% block title %}Detalles de Venta - Detalles del Venta{% endblock %}
+{% block title %}Venta - Detalles de la venta{% endblock %}
 
 {% block content %}
   <div class="row">
@@ -11,30 +11,32 @@
             <div class="row">
               <div class="col-lg-12">
                 <div class="m-b-md">
-                  <a href="{% url 'ventas:detventa-update' object.pk %}"
+                  <a href="{% url 'ventas:venta-update' object.pk %}"
                      class="btn btn-white btn-xs pull-right">Editar
-                    el detalle de venta</a>
-                  <h2>{{ object }}</h2>
+                    la venta</a>
+                  <h2>{{ object.numerofactura }}</h2>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-lg-5">
                 <dl class="dl-horizontal">
-                  <dt>Denominación del Artículo:</dt>
-                  <dd>{{ object }}</dd>
-                  <dt>Descripción del Artículo:</dt>
-                  <dd>  {{ object.descarticulo }}</dd>
+                  <dt>Número de Factura:</dt>
+                  <dd>{{ object.numerofactura }}</dd>
+                  <dt>Fecha:</dt>
+                  <dd>  {{ object.fecha|date }}</dd>
+                  <dt>Total Facturas</dt>
+                  <dd> {{ object.totalfactura }} </dd>
                 </dl>
               </div>
               <div class="col-lg-7" id="cluster_info">
                 <dl class="dl-horizontal">
-                  <dt>Precio:</dt>
-                  <dd>  {{ object.precio }} </dd>
-                  <dt>Existencia:</dt>
-                  <dd>{{ object.existencia }}</dd>
-                  <dt>Tipo de Artículo:</dt>
-                  <dd> {{ object.tipoarticulo }} </dd>
+                  <dt>Cliente:</dt>
+                  <dd>  {{ object.idcliente }} </dd>
+                  <dt>Hora:</dt>
+                  <dd>{{ object.hora }}</dd>
+                  <dt>Total Articulos:</dt>
+                  <dd> {{ object.totalarticulos }} </dd>
                 </dl>
               </div>
             </div>

@@ -1,19 +1,16 @@
 {% extends 'ventas/base.html' %}
 
-{% block title %}Articulos - Lista{% endblock %}
+{% block title %}Ventas - Lista{% endblock %}
 {% block content %}
 <div class="wrapper wrapper-content  animated fadeInRight">
   <div class="row">
     <div class="col-lg-12">
-      {% comment %}
-      {% include 'finance/messages.html' %}
-      {% endcomment %}
       <div class="ibox">
         <div class="ibox-title">
-          <h5>Lista de articulos</h5>
+          <h5>Lista de Ventas</h5>
           <div class="ibox-tools">
-            <a href="{% url 'ventas:articulo-create' %}"
-               class="btn btn-primary btn-xs">Registrar un articulo</a>
+            <a href="{% url 'ventas:venta-create' %}"
+               class="btn btn-primary btn-xs">Registrar una venta</a>
           </div>
         </div>
         <div class="ibox-content">
@@ -21,18 +18,17 @@
             <div class="m-t-md">
               <strong>Encontrado{{ paginator.count|pluralize }}
                 {{ paginator.count }}
-                articulo{{ paginator.count|pluralize }}</strong>
+                venta{{ paginator.count|pluralize }}</strong>
             </div>
           </div>
           <div class="table-responsive">
             <table class="table table-hover issue-tracker">
               <thead>
               <tr>
-                <th>Denominación del Artículo</th>
-                <th>Descripción del Artículo</th>
-                <th>Precio</th>
-                <th>Existencia</th>
-                <th>Tipo de Artículo</th>
+                <th>Número de Factura</th>
+                <th>Fecha</th>
+                <th>Cliente</th>
+                <th>Total</th>
                 <th class="text-right">Acciones</th>
               </tr>
               </thead>
@@ -40,27 +36,24 @@
               {% for object in object_list %}
               <tr>
                 <td>
-                  <a href="{% url 'ventas:articulo-detail' object.pk %}">
-                    {{ object }}
+                  <a href="{% url 'ventas:venta-detail' object.pk %}">
+                    {{ object.numerofactura }}
                   </a>
                 </td>
                 <td>
                   <p class="small">
-                    {{ object.descarticulo }}
+                    {{ object.fecha|date }}
                   </p>
                 </td>
                 <td>
-                  {{ object.precio }}
+                  {{ object.idcliente }}
                 </td>
-                <td>
-                  {{ object.existencia }}
-                </td>
-                <td>{{ object.tipoarticulo }}</td>
+                <td>{{ object.totalfactura }}</td>
                 <td class="text-right">
-                  <a href="{% url 'ventas:articulo-update' object.pk %}"
+                  <a href="{% url 'ventas:venta-update' object.pk %}"
                      class="btn btn-white btn-sm"><i
                       class="fa fa-pencil"></i> Editar </a>
-                  <a href="{% url 'ventas:articulo-delete' object.pk %}"
+                  <a href="{% url 'ventas:venta-delete' object.pk %}"
                      class="btn btn-white btn-sm" data-toggle="modal"
                      data-target="#modal"><i class="fa fa-trash"></i>
                     Eliminar </a>
@@ -68,7 +61,7 @@
               </tr>
               {% empty %}
               <tr>
-                <td><p>Sin propietarios encontrados.</p></td>
+                <td><p>Sin ventas encontradas.</p></td>
               </tr>
               {% endfor %}
               </tbody>
