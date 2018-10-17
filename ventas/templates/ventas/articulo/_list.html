@@ -2,106 +2,83 @@
 
 {% block title %}Articulos - Lista{% endblock %}
 {% block content %}
-  <div class="wrapper wrapper-content  animated fadeInRight">
-    <div class="row">
-      <div class="col-lg-12">
-        {% comment %}
-        {% include 'finance/messages.html' %}
-        {% endcomment %}
-        <div class="ibox">
-          <div class="ibox-title">
-            <h5>Lista de propietarios</h5>
-            <div class="ibox-tools">
-              <a href=""
-                 class="btn btn-primary btn-xs">Registrar un propietario</a>
+<div class="wrapper wrapper-content  animated fadeInRight">
+  <div class="row">
+    <div class="col-lg-12">
+      {% comment %}
+      {% include 'finance/messages.html' %}
+      {% endcomment %}
+      <div class="ibox">
+        <div class="ibox-title">
+          <h5>Lista de articulos</h5>
+          <div class="ibox-tools">
+            <a href="{% url 'ventas:articulo-create' %}"
+               class="btn btn-primary btn-xs">Registrar un articulo</a>
+          </div>
+        </div>
+        <div class="ibox-content">
+          <div class="m-b-lg">
+            <div class="m-t-md">
+              <strong>Encontrado{{ paginator.count|pluralize }}
+                {{ paginator.count }}
+                articulo{{ paginator.count|pluralize }}</strong>
             </div>
           </div>
-          <div class="ibox-content">
-            <div class="m-b-lg">
-              <form class="" method="get">
-                <div class="input-group">
-                  {{ form.qs }}
-                  <span class="input-group-btn">
-                    <button type="submit"
-                            class="btn btn-white"> Buscar</button>
-                  </span>
-                </div>
-              </form>
-              <div class="m-t-md">
-                <div class="pull-right">
-                  <a href="?contract-active=true" class="btn btn-sm btn-white"
-                     title="Propietarios con contrato activo"> <i
-                      class="fa fa-comments"></i> </a>
-                </div>
-                <strong>Encontrado{{ paginator.count|pluralize }} {{ paginator.count }}
-                  propietario{{ paginator.count|pluralize }}</strong>
-              </div>
-            </div>
-            <div class="table-responsive">
-              <table class="table table-hover issue-tracker">
-                <thead>
-                <tr>
-                  <th>Contrato</th>
-                  <th>Nombre</th>
-                  <th>DNI</th>
-                  <th>Telefono</th>
-                  <th class="text-right">Acciones</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for object in object_list %}
-                  <tr>
-                    <td>
-                      {% if object.have_contract_active %}
-                        <span class="label label-primary">Activo</span>
-                      {% else %}
-                        <span class="label label-warning">No activo</span>
-                      {% endif %}
-                    </td>
-                    <td class="issue-info">
-                      <a href="">
-                        {{ object }}
-                      </a>
-                      <small>
-                        {{ object.address|default_if_none:'Sin direccion'|truncatechars:50 }}
-                      </small>
-                    </td>
-                    <td>
-                      {{ object.dni|default_if_none:'Sin DNI' }}
-                    </td>
-                    <td>
-                      {{ object.phone|default_if_none:'Sin telefono' }}
-                    </td>
-                    <td class="text-right">
-                      {% comment %}
-                      {% if object|liquidated_verify %}
-                        <a href=""
-                           class="btn btn-white btn-sm"><i
-                            class="fa fa-money"></i> Liquidar </a>
-                      {% endif %}
-                      {% if not object.have_contract_active %}
-                        <a href=""
-                           class="btn btn-white btn-sm" data-toggle="modal"
-                           data-target="#modal"> <i class="fa fa-trash"></i>
-                          Eliminar </a>
-                      {% endif %}
-                      {% endcomment %}
-                    </td>
-                  </tr>
-                {% empty %}
-                  <tr>
-                    <td><p>Sin propietarios encontrados.</p></td>
-                  </tr>
-                {% endfor %}
-                </tbody>
-              </table>
-              {% comment %}
-              {% include 'finance/paginate.html' %}
-              {% endcomment %}
-            </div>
+          <div class="table-responsive">
+            <table class="table table-hover issue-tracker">
+              <thead>
+              <tr>
+                <th>Denominación del Artículo</th>
+                <th>Descripción del Artículo</th>
+                <th>Precio</th>
+                <th>Existencia</th>
+                <th>Tipo de Artículo</th>
+                <th class="text-right">Acciones</th>
+              </tr>
+              </thead>
+              <tbody>
+              {% for object in object_list %}
+              <tr>
+                <td>
+                  <a href="{% url 'ventas:articulo-detail' object.pk %}">
+                    {{ object }}
+                  </a>
+                </td>
+                <td>
+                  <p class="small">
+                    {{ object.descarticulo }}
+                  </p>
+                </td>
+                <td>
+                  {{ object.precio }}
+                </td>
+                <td>
+                  {{ object.existencia }}
+                </td>
+                <td>{{ object.tipoarticulo }}</td>
+                <td class="text-right">
+                  <a href="{% url 'ventas:articulo-update' object.pk %}"
+                     class="btn btn-white btn-sm"><i
+                      class="fa fa-pencil"></i> Editar </a>
+                  <a href="{% url 'ventas:articulo-delete' object.pk %}"
+                     class="btn btn-white btn-sm" data-toggle="modal"
+                     data-target="#modal"><i class="fa fa-trash"></i>
+                    Eliminar </a>
+                </td>
+              </tr>
+              {% empty %}
+              <tr>
+                <td><p>Sin propietarios encontrados.</p></td>
+              </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+            {% include 'ventas/paginate.html' %}
           </div>
         </div>
       </div>
+      {% include 'ventas/modal.html' %}
     </div>
   </div>
+</div>
 {% endblock %}
