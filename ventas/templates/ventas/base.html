@@ -36,42 +36,15 @@
              title="App Test Workana Python Django">ATWPD</a>
         </div>
         <div class="navbar-collapse collapse" id="navbar">
-          <ul class="nav navbar-nav">
-            <li class="dropdown">
-              <a aria-expanded="false" role="button" href="#"
-                 class="dropdown-toggle" data-toggle="dropdown"> Artículo
-                <span class="caret"></span></a>
-              <ul role="menu" class="dropdown-menu">
-                <li><a
-                    href="{% url 'ventas:articulo-list' %}">Listar</a>
-                </li>
-                <li><a
-                    href="{% url 'ventas:articulo-create' %}">Crear</a>
-                </li>
-              </ul>
+          <ul class="nav navbar-nav navbar-top-links">
+            <li class="{% block navarti %}{% endblock %}">
+              <a aria-expanded="false" role="button" href="{% url 'ventas:articulo-list' %}"> Articulos</a>
             </li>
-            <li class="dropdown">
-              <a aria-expanded="false" role="button" href="#"
-                 class="dropdown-toggle" data-toggle="dropdown"> Cliente
-                <span class="caret"></span></a>
-              <ul role="menu" class="dropdown-menu">
-                <li><a
-                    href="{% url 'ventas:cliente-list' %}">Listar</a>
-                </li>
-                <li><a href="{% url 'ventas:cliente-create' %}">Crear</a>
-                </li>
-              </ul>
+            <li class="{% block navclt %}{% endblock %}">
+              <a aria-expanded="false" role="button" href="{% url 'ventas:cliente-list' %}"> Clientes</a>
             </li>
-            <li class="dropdown">
-              <a aria-expanded="false" role="button" href="#"
-                 class="dropdown-toggle" data-toggle="dropdown"> Ventas
-                <span class="caret"></span></a>
-              <ul role="menu" class="dropdown-menu">
-                <li><a href="{% url 'ventas:venta-list' %}">Listar</a>
-                </li>
-                <li><a href="{% url 'ventas:venta-create' %}">Crear</a></li>
-                </li>
-              </ul>
+            <li class="{% block navvent %}{% endblock %}">
+              <a aria-expanded="false" role="button" href="{% url 'ventas:venta-list' %}">Ventas</a>
             </li>
           </ul>
           <ul class="nav navbar-top-links navbar-right">
