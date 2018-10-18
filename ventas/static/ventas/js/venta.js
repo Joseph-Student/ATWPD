@@ -21,7 +21,6 @@ function addDetail(event) {
     })
     var total_forms = num + 1
     $('#id_idventa_detventas-TOTAL_FORMS').val(total_forms)
-    totalArt();
 }
 function deleteDetail(event, t) {
     event.preventDefault();
@@ -57,8 +56,9 @@ function precioData(t) {
 
 function totalArt() {
     var cant = 0;
+
     $("[id^='id_div_detalle-']").each(function (index) {
-        cant += 1;
+        cant += parseInt($(this).find("input[id$='cantidad']").val());
     });
     $("#id_totalarticulos").val(cant)
 }

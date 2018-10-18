@@ -128,7 +128,8 @@ class DetVentaInlineForm(forms.ModelForm):
             'cantidad': forms.NumberInput(
                 attrs={
                     'class': 'form-control',
-                    'placeholder': 'Cantidad'
+                    'placeholder': 'Cantidad',
+                    'onBlur': 'totalArt()'
                 }
             ),
             'idarticulo': forms.Select(
