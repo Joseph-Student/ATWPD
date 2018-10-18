@@ -49,6 +49,22 @@ class ArticuloDeleteView(DeleteView):
     model = Articulos
 
 
+class ArticuloAjaxView(JSONResponseMixin, BaseDetailView):
+    model = Articulos
+
+    def get(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        cantidad = int(request.GET.get('cantidad', '1'))
+        data = {
+            'precio': self.object.precio,
+            'monto': cantidad * self.object.precio
+        }
+        return self.render_to_response(data)
+
+    def render_to_response(self, context, **response_kwargs):
+        return self.render_to_json_response(context, **response_kwargs)
+
+
 # Vistas de Clientes
 class ClienteListView(ListView):
     template_name = 'ventas/cliente/_list.html'
@@ -183,19 +199,3 @@ class VentaDeleteView(DeleteView):
     template_name = 'ventas/venta/_delete.html'
     success_url = reverse_lazy('ventas:venta-list')
     model = VentasDiarias
-
-
-class ArticuloAjaxView(JSONResponseMixin, BaseDetailView):
-    model = Articulos
-
-    def get(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        cantidad = int(request.GET.get('cantidad', '1'))
-        data = {
-            'precio': self.object.precio,
-            'monto': cantidad * self.object.precio
-        }
-        return self.render_to_response(data)
-
-    def render_to_response(self, context, **response_kwargs):
-        return self.render_to_json_response(context, **response_kwargs)

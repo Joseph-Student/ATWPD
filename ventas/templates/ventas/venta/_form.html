@@ -58,15 +58,14 @@
               <div class="panel-body">
                 <div class="ibox float-e-margins">
                   <div id="id_inline_detalle" class="ibox-content">
-                    <p>Registre los Detalles:</p>
+                    <p>Registre los detalles:</p>
                     <p>
                       <a href="#" onclick="addDetail(event)">Agregar otro
-                        Detalle</a>
+                        detalle</a>
                     </p>
                     {{ detalle_inlineformset.non_form_errors|safe }}
                     {% for form in detalle_inlineformset %}
-                    {% include 'ventas/detalle/_form.html' with
-                    num=forloop.counter0%}
+                    {% include 'ventas/detalle/_form.html' with num=forloop.counter0%}
                     {% endfor %}
                   </div>
                 </div>

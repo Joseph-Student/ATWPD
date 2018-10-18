@@ -23,6 +23,8 @@ class BaseInlineModelFormMixin(ModelFormMixin):
 
     def get_inline_form_class(self):
         pass
+        # for inline in self.inlines:
+        #     setattr(self, 'inline')
 
     def get_inline_prefix(self):
         return self.inline_prefix
