@@ -108,13 +108,15 @@ class VentaForm(forms.ModelForm):
             'totalarticulos': forms.NumberInput(
                 attrs={
                     'class': 'form-control',
-                    'placeholder': 'Total Artículos'
+                    'placeholder': 'Total Artículos',
+                    'readonly': 'readonly'
                 }
             ),
             'totalfactura': forms.NumberInput(
                 attrs={
                     'class': 'form-control',
-                    'placeholder': 'Total Factura'
+                    'placeholder': 'Total Factura',
+                    'readonly': 'readonly'
                 }
             )
         }
@@ -143,17 +145,27 @@ class DetVentaInlineForm(forms.ModelForm):
                 attrs={
                     'class': 'form-control',
                     'placeholder': 'Precio',
+                    'readonly': 'readonly'
                 }
             ),
             'monto': forms.NumberInput(
                 attrs={
                     'class': 'form-control',
-                    'placeholder': 'Monto'
+                    'placeholder': 'Monto',
+                    'readonly': 'readonly'
                 }
             )
         }
 
     class Media:
+        css = {
+            'all': (
+                'ventas/footable-bootstrap.latest/css/footable.bootstrap.min.css',
+                'ventas/css/ventas.css',
+            )
+        }
         js = (
             'ventas/js/venta.js',
+            'ventas/footable-bootstrap.latest/js/footable.min.js',
+            'ventas/js/footable.js',
         )

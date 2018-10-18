@@ -21,9 +21,7 @@ class DetVentas(models.Model):
     cantidad = models.FloatField(verbose_name='Cantidad', null=False,
                                  blank=False, db_column='Cantidad', )
     # Id Articulo [INTEGER]
-    idarticulo = models.ForeignKey('Articulos', verbose_name='Articulo',
-                                   null=False, blank=False,
-                                   on_delete=models.DO_NOTHING,
+    idarticulo = models.ForeignKey('Articulos', verbose_name='Articulo', null=False, blank=False, on_delete=models.DO_NOTHING,
                                    db_column='IdArticulo')
     # Precio [DECIMAL]
     precio = models.FloatField(verbose_name='Precio', null=True, blank=True,
