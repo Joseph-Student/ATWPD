@@ -3,21 +3,6 @@ from django.urls import path, include
 from ventas import views
 
 app_name = 'ventas'
-# models_name = ['articulo', 'cliente', 'detVentas']
-# patterns = []
-#
-# for name in models_name:
-#     patterns.append([
-#         path('', exec('views.{0}ListView.as_view()'.format(name.capitalize())), name='{}-list'.format(name)),
-#         path('create/', views.ArticuloCreateView.as_view(),
-#              name='articulo-create'),
-#         path('<int:pk>/detail/', views.ArticuloDetailView.as_view(),
-#              name='articulo-detail'),
-#         path('<int:pk>/update/', views.ArticuloUpdateView.as_view(),
-#              name='articulo-update'),
-#         path('<int:pk>/delete/', views.ArticuloDeleteView.as_view(),
-#              name='articulo-delete')
-#     ])
 
 # urls de articulos
 articulo_patterns = [

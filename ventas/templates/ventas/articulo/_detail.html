@@ -4,44 +4,44 @@
 {% block navarti %}active{% endblock %}
 
 {% block content %}
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="wrapper wrapper-content animated fadeInUp">
-        <div class="ibox">
-          <div class="ibox-content">
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="m-b-md">
-                  <a href="{% url 'ventas:articulo-update' object.pk %}"
-                     class="btn btn-white btn-xs pull-right">Editar
-                    articulo</a>
-                  <h2>{{ object }}</h2>
-                </div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="wrapper wrapper-content animated fadeInUp">
+      <div class="ibox">
+        <div class="ibox-content">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="m-b-md">
+                <a href="{% url 'ventas:articulo-update' object.pk %}"
+                   class="btn btn-white btn-xs pull-right">Editar
+                  articulo</a>
+                <h2>{{ object }}</h2>
               </div>
             </div>
-            <div class="row">
-              <div class="col-lg-5">
-                <dl class="dl-horizontal">
-                  <dt>Denominación del Artículo:</dt>
-                  <dd>{{ object }}</dd>
-                  <dt>Descripción del Artículo:</dt>
-                  <dd>  {{ object.descarticulo }}</dd>
-                </dl>
-              </div>
-              <div class="col-lg-7" id="cluster_info">
-                <dl class="dl-horizontal">
-                  <dt>Precio:</dt>
-                  <dd>  {{ object.precio }} </dd>
-                  <dt>Existencia:</dt>
-                  <dd>{{ object.existencia }}</dd>
-                  <dt>Tipo de Artículo:</dt>
-                  <dd> {{ object.tipoarticulo }} </dd>
-                </dl>
-              </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-5">
+              <dl class="dl-horizontal">
+                <dt>Denominación del Artículo:</dt>
+                <dd>{{ object }}</dd>
+                <dt>Descripción del Artículo:</dt>
+                <dd> {{ object.descarticulo }}</dd>
+              </dl>
+            </div>
+            <div class="col-lg-7" id="cluster_info">
+              <dl class="dl-horizontal">
+                <dt>Precio:</dt>
+                <dd> {{ object.precio }}</dd>
+                <dt>Existencia:</dt>
+                <dd>{{ object.existencia }}</dd>
+                <dt>Tipo de Artículo:</dt>
+                <dd> {{ object.tipoarticulo }}</dd>
+              </dl>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 {% endblock %}

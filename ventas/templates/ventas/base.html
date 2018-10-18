@@ -38,13 +38,16 @@
         <div class="navbar-collapse collapse" id="navbar">
           <ul class="nav navbar-nav navbar-top-links">
             <li class="{% block navarti %}{% endblock %}">
-              <a aria-expanded="false" role="button" href="{% url 'ventas:articulo-list' %}"> Articulos</a>
+              <a aria-expanded="false" role="button"
+                 href="{% url 'ventas:articulo-list' %}"> Articulos</a>
             </li>
             <li class="{% block navclt %}{% endblock %}">
-              <a aria-expanded="false" role="button" href="{% url 'ventas:cliente-list' %}"> Clientes</a>
+              <a aria-expanded="false" role="button"
+                 href="{% url 'ventas:cliente-list' %}"> Clientes</a>
             </li>
             <li class="{% block navvent %}{% endblock %}">
-              <a aria-expanded="false" role="button" href="{% url 'ventas:venta-list' %}">Ventas</a>
+              <a aria-expanded="false" role="button"
+                 href="{% url 'ventas:venta-list' %}">Ventas</a>
             </li>
           </ul>
           <ul class="nav navbar-top-links navbar-right">
