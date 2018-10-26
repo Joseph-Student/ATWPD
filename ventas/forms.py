@@ -160,12 +160,9 @@ class DetVentaInlineForm(forms.ModelForm):
     class Media:
         css = {
             'all': (
-                'ventas/footable-bootstrap.latest/css/footable.bootstrap.min.css',
                 'ventas/css/ventas.css',
             )
         }
         js = (
             'ventas/js/venta.js',
-            'ventas/footable-bootstrap.latest/js/footable.min.js',
-            'ventas/js/footable.js',
         )
